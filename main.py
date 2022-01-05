@@ -1,6 +1,6 @@
-# Program that asks the user for a word to search for and the amount of flaws
-# allowed. The file is searched for the words that match the input with x amount
-# of flaws
+# Program that searches a file for a user-specified word
+# returning all the words with maximum 2 total
+# insertions and deletions (in no particular order)
 
 def longest_common_subsequence(str1, str2, m, n):
  
