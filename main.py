@@ -2,7 +2,7 @@
 # allowed. The file is searched for the words that match the input with x amount
 # of flaws
 
-def longest_common_substring(str1, str2, m, n):
+def longest_common_subsequence(str1, str2, m, n):
  
     L = [[0 for i in range(n + 1)]
          for i in range(m + 1)]
@@ -21,21 +21,26 @@ def longest_common_substring(str1, str2, m, n):
                 L[i][j] = max(L[i - 1][j],
                               L[i][j - 1])
  
-    # L[m][n] contains length of LCS
-    # for X[0..n-1] and Y[0..m-1]
+    # Return length of LCS
     return L[m][n]
 
-def isInRange(fileWord, word):
-    leng = longest_common_substring(str1, str2, m, n)
+def isWordWithinRange(str1, str2):
+    leng = longest_common_subsequence(str1, str2, len(str1), len(str2))
+    deletions = len(str1) - leng
+    insertions = len(str2) - leng
 
-
-
+# Variables
+similarWords = []
 # Get the parameters
 input = input("Please enter your word to search for: ")
-
 
 # Open file to start the search
 f = open("examplefile.txt", "r").read().splitlines()
 
-for word in f: # Each word in file
-    pass
+# Check each word in the file & add it to the list if 
+# it has 2 or less total insertions and deletions
+for word in f: 
+    # Ignore words that are too large or small - hopefully saving time
+    if len(word) <= (len(input) + 2) and len(word) >= (len(input) - 2):
+        if isWordWithinRange(word, input):
+            similarWords.append(word)
