@@ -1,6 +1,7 @@
 # Program that searches a file for a user-specified word
 # returning all the words with maximum 2 total
 # insertions and deletions (in no particular order)
+from timeit import default_timer as timer
 
 def longest_common_subsequence(str1, str2, m, n):
  
@@ -28,6 +29,11 @@ def isWordWithinRange(str1, str2):
     leng = longest_common_subsequence(str1, str2, len(str1), len(str2))
     deletions = len(str1) - leng
     insertions = len(str2) - leng
+    total = insertions + deletions
+    if total > 2:
+        return False
+    else:
+        return True
 
 # Variables
 similarWords = []
@@ -35,7 +41,10 @@ similarWords = []
 input = input("Please enter your word to search for: ")
 
 # Open file to start the search
-f = open("examplefile.txt", "r").read().splitlines()
+f = open("english_words.txt", "r").read().splitlines()
+
+# Timing the search
+start = timer()
 
 # Check each word in the file & add it to the list if 
 # it has 2 or less total insertions and deletions
@@ -44,3 +53,11 @@ for word in f:
     if len(word) <= (len(input) + 2) and len(word) >= (len(input) - 2):
         if isWordWithinRange(word, input):
             similarWords.append(word)
+
+# Timing the search
+end = timer()
+
+# Print results in no particular order with duplicates
+print("{0} results found in {1} seconds!".format(len(similarWords), (end - start)))
+for x in similarWords:
+    print(x)
