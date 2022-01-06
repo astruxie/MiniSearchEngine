@@ -12,8 +12,8 @@ def longest_common_subsequence(str1, str2, x, y):
     L = [[0 for i in range(y + 1)]
          for i in range(x + 1)]
  
-    # Build the grid to compare each letter in the two words
-    # L[i][j] contains length of LCS of string1[0...i-1] and string[0...j-1]
+    # Build the matrix to compare each letter in the two words
+    # L[i][j] contains length of LCS of string1[0...i-1] and string2[0...j-1]
     # L[x][y] contains the length of the longest common subsequnece
     for i in range(x + 1):
         for j in range(y + 1):
