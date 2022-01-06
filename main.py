@@ -58,7 +58,7 @@ for word in f:
 
 end = timer()
 
-# Print results in no particular order with duplicates
+# Print in no particular order with duplicates allowed
 print("{0} results found in {1} seconds!".format(len(similarWords), (end - start)))
 for x in similarWords:
     print(x)
